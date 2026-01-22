@@ -502,15 +502,32 @@
     </div>
 
     <script>
-        // Animal sound interaction
+        // Animal sound interaction with actual audio
         const animals = document.querySelectorAll('.animal');
         const soundPopup = document.getElementById('soundPopup');
+
+        // Function to speak the animal sound
+        function speakSound(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1.2;
+                utterance.volume = 1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
 
         animals.forEach(animal => {
             animal.addEventListener('click', () => {
                 const sound = animal.getAttribute('data-sound');
                 soundPopup.textContent = sound;
                 soundPopup.classList.add('show');
+
+                // Play the sound using speech synthesis
+                speakSound(sound);
 
                 setTimeout(() => {
                     soundPopup.classList.remove('show');
