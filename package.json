@@ -1,0 +1,8 @@
+{
+  "name": "dhruv-birthday-website",
+  "version": "1.0.0",
+  "description": "Dhruv's 2nd Birthday - Old McDonald Farm Theme",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
